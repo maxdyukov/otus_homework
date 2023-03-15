@@ -1,0 +1,23 @@
+name: my_workflow_otus
+on:
+  push:
+    branches:
+      - homework/*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install compiler
+        run: apt update && apt upgrade -y && apt install -y build-essential cmake libgtest-dev
+
+      - name: Create build dir
+        run: mkdir build && cd build
+      
+      - name: Run Cmake 
+        run: cmake ../src
+      
+      - name: Build
+        run: cmake --build . -j12
+
+      - name: Run test 
+        run: ctest .
