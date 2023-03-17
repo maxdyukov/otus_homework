@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install compiler
-        run: sudo apt update && sudo apt upgrade -y && sudo apt install -y build-essential cmake libgtest-dev
+        run: sudo apt update && sudo apt install -y build-essential cmake libgtest-dev
 
       - name: Create build dir
         run: mkdir build && cd build
