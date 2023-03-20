@@ -15,3 +15,9 @@ TEST(SolveTest, RootsWhenSecondCoefIsZero){
     EXPECT_DOUBLE_EQ(1.0, roots[0]);
     EXPECT_DOUBLE_EQ(-1.0, roots[1]);
 }
+
+TEST(SolveTest, OneRoots) { 
+    auto roots = solve(1.0, 2.0, 1.0);
+    EXPECT_DOUBLE_EQ(-1.0, roots[0]);
+    EXPECT_DOUBLE_EQ(-1.0, roots[1]);
+}

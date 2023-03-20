@@ -9,5 +9,11 @@ std::vector<double> solve(double a, double b, double c) {
       return {root, -1.0 * root};
     }
 
+    double D = b * b - 4 * a * c;
+    if (D == 0){
+      double x1 = -(b / (2 * a));
+      return {x1, x1};
+    }
+    
     return {};
 }
