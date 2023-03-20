@@ -21,3 +21,7 @@ TEST(SolveTest, OneRoots) {
     EXPECT_DOUBLE_EQ(-1.0, roots[0]);
     EXPECT_DOUBLE_EQ(-1.0, roots[1]);
 }
+
+TEST(SolveTest, A_Is_Zerro) { 
+    EXPECT_THROW(solve(0.0, 2.0, 1.0), std::invalid_argument);
+}
