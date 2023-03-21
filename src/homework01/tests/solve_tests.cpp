@@ -36,3 +36,9 @@ TEST(SolveTest, D_Is_Very_Small) {
     auto roots = solve(1, 0.0002, 0.0001);
     ASSERT_TRUE(roots.empty());
 }
+
+TEST(SolveTest, Coef_Is_Not_double) { 
+    EXPECT_THROW(solve(DBL_MAX, 3423.0, 234.0), std::invalid_argument);
+    EXPECT_THROW(solve(123.0, DBL_MAX, 234.0), std::invalid_argument);
+    EXPECT_THROW(solve(123.0, 3423.0, DBL_MAX), std::invalid_argument);
+ }
