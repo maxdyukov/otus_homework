@@ -7,5 +7,5 @@ set(CMAKE_CXX_STANDARD 17)
 # set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -fdata-sections -ffunction-sections -Wl,--gc-sections")
 
 find_package(GTest REQUIRED)
-
+enable_testing()
 add_subdirectory(homework01)

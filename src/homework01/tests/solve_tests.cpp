@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <vector>
+#include <cfloat>
 
 std::vector<double> solve(double a, double b, double c);
 bool isEqual(double x, double y, double eps);
