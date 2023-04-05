@@ -4,8 +4,8 @@
 
 class Move{
   public:
-   Move(MovableAdapter m_adapter);
+   Move(MovableAdapter *m_adapter);
    void Execute();
   private:
-   MovableAdapter adapter_;
+   MovableAdapter *adapter_;
 };

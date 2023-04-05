@@ -10,7 +10,7 @@ void MovableAdapter::setPosition(std::vector<int> pos){
   obj_->setPosition(pos);
 }
 
-std::vector<int> MovableAdapter::getVelocity() { 
+std::vector<int> MovableAdapter::getVelocity() {
     int d = obj_->getProperty("Direction");
     int n = obj_->getProperty("DirectionNumber");
     int v = obj_->getProperty("Velocity");

@@ -5,6 +5,7 @@ add_library(${TARGET}
                     move.cpp 
                     movable_adapter.h 
                     movable_adapter.cpp 
-                    object.h)
+                    object.h
+                    object.cpp)
 
 add_subdirectory(tests)

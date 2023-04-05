@@ -7,9 +7,9 @@ class MovableAdapter{
     public:
      MovableAdapter(Object *obj);
 
-     std::vector<int> getPosition();
-     void setPosition(std::vector<int> pos);
-     std::vector<int> getVelocity();
+     virtual std::vector<int> getPosition();
+     virtual void setPosition(std::vector<int> pos);
+     virtual std::vector<int> getVelocity();
 
     private:
      Object *obj_;
