@@ -1,11 +1,20 @@
 project(OTUS_HOMEWORK)
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fdata-sections -ffunction-sections -Wl,--gc-sections")
-# set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -fdata-sections -ffunction-sections -Wl,--gc-sections")
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        release-1.12.1
+)
+FetchContent_MakeAvailable(googletest)
+FetchContent_GetProperties(googletest)
+if (NOT googletest_POPULATED)
+    add_subdirectory(${googletest_SOURCE_DIR} ${google_BINARY_DIR})
+endif()
 
-find_package(GTest REQUIRED)
 enable_testing()
 add_subdirectory(homework01)
+add_subdirectory(homework03)
