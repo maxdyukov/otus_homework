@@ -1,6 +1,7 @@
 #include "movable_adapter.h"
 
 #include <math.h>
+#include <stdexcept>
 
 MovableAdapter::MovableAdapter(Object *obj) : obj_(obj){}
 
