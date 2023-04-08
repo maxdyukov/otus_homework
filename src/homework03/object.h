@@ -9,8 +9,7 @@ class Object{
    Object();
    Object(Object &);
    virtual int getProperty(const std::string &property);
-   virtual void setPosition(std::vector<int> &position);
-   virtual std::vector<int> getPosition();
+   virtual void setProperty(const std::string &property, int value);
   private:
    std::map<std::string, int> property_;
 };

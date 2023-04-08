@@ -4,10 +4,17 @@
 
 MovableAdapter::MovableAdapter(Object *obj) : obj_(obj){}
 
-std::vector<int> MovableAdapter::getPosition() { return obj_->getPosition(); }
+std::vector<int> MovableAdapter::getPosition() {
+  return { obj_->getProperty("PositionX"), obj_->getProperty("PositionY")};
+}
 
-void MovableAdapter::setPosition(std::vector<int> pos){
-  obj_->setPosition(pos);
+void MovableAdapter::setPosition(std::vector<int> pos) {
+  if (pos.size() > 2){
+    throw std::runtime_error("Failed set position");
+  }
+  obj_->setProperty("PositionX", pos[0]);
+  obj_->setProperty("PositionY", pos[1]);
+
 }
 
 std::vector<int> MovableAdapter::getVelocity() {

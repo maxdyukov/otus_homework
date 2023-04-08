@@ -6,6 +6,10 @@ add_library(${TARGET}
                     movable_adapter.h 
                     movable_adapter.cpp 
                     object.h
-                    object.cpp)
+                    object.cpp
+                    rotable_adapter.cpp
+                    rotable_adapter.h
+                    rotate.cpp
+                    rotate.h)                  
 
 add_subdirectory(tests)

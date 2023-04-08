@@ -3,7 +3,6 @@
 
 #include "move.h"
 #include "movable_adapter_mock.h"
-#include "object_mock.h"
 
 using namespace ::testing;
 
@@ -33,12 +32,11 @@ TEST_F(MoveTest, move_object) {
   Move move_command(adapter_);
   move_command.Execute();
 
-  auto position = object_->getPosition();
-  std::vector<int> result_position = {5, 8};
+  int x = object_->getProperty("PositionX");
+  int y = object_->getProperty("PositionY");
 
-  for (int i = 0; i < position.size(); i++){
-    EXPECT_EQ(result_position[i], position[i]);
-  }
+  EXPECT_EQ(5, x);
+  EXPECT_EQ(8, y);
 }
 
 TEST_F(MoveTest, move_object_without_position){
