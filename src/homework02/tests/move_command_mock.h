@@ -4,5 +4,6 @@
 
 class MoveCommandMock : public MoveCommand {
  public:
+  MoveCommandMock(Object *obj) : MoveCommand(obj) {}
   MOCK_METHOD(void, execute, (), (override));
 };
