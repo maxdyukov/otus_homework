@@ -17,4 +17,5 @@ endif()
 
 enable_testing()
 add_subdirectory(homework01)
+add_subdirectory(homework02)
 add_subdirectory(homework03)
