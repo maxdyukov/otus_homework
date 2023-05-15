@@ -38,6 +38,21 @@ class ExceptionHandlerRepeateAndLog : public ExceptionHandler {
   ExceptionHandlerRepeateAndLog(QueueCommand* queue_cmd, ICommand* cmd,
                                 std::exception* ex);
   virtual void handle() override;
-  private:
-   bool is_first{false};
+
+ private:
+  bool is_first{false};
+};
+
+class ExceptionHandle {
+ public:
+  static ExceptionHandler* hanler(QueueCommand* queue_cmd, ICommand* cmd,
+                                  std::exception* ex) {
+    if (typeid(*ex) == typeid(CommandException)){
+      return new ExceptionHandlerRepeate(queue_cmd, cmd, ex);
+    } else if (typeid(*ex) == typeid(LogException)){
+      return new ExceptionHandlerLog(queue_cmd, cmd, ex);
+    } else {
+      return new ExceptionHandlerRepeateAndLog(queue_cmd, cmd, ex);
+    }
+  }
 };

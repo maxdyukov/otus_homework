@@ -11,8 +11,8 @@ void QueueCommand::execute() {
     try {
       comm->execute();
     } catch (std::exception &ex) {
-      // auto com_ex = ExceptionHandler::handle(comm, ex);
-      // addCommand(com_ex);
+      auto handler = ExceptionHandle::hanler(this, comm, &ex);
+      handler->handle();
     }
     commands_.pop();
     delete comm;

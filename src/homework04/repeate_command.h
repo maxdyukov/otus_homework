@@ -20,6 +20,7 @@ class RepeateCommand : public ICommand {
       }
     }
   }
+  ~RepeateCommand() = default;
 
  private:
   ICommand *cmd_;

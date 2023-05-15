@@ -7,6 +7,7 @@
 class LoggerCommand : public ICommand {
  public:
   LoggerCommand(ICommand* cmd, std::string ex_str);
+  ~LoggerCommand() = default;
   void execute();
 
  private:
