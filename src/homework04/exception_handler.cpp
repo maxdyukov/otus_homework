@@ -3,6 +3,8 @@
 #include "logger_command.h"
 #include "repeate_command.h"
 
+bool ExceptionHandlerRepeateAndLog::is_first(true);
+
 ExceptionHandler::ExceptionHandler(QueueCommand *queue_cmd, ICommand *cmd,
                                    std::exception *ex)
     : queue_cmd_(queue_cmd), cmd_(cmd), ex_(ex) {}
@@ -26,23 +28,14 @@ void ExceptionHandlerRepeate::handle() {
 
 ExceptionHandlerRepeateAndLog::ExceptionHandlerRepeateAndLog(
     QueueCommand *queue_cmd, ICommand *cmd, std::exception *ex)
-    : ExceptionHandler(queue_cmd, cmd, ex), is_first(false) {}
+    : ExceptionHandler(queue_cmd, cmd, ex) {}
 
 void ExceptionHandlerRepeateAndLog::handle(){
   if (is_first){
     queue_cmd_->addCommand(new RepeateCommand(cmd_));
+    is_first = false;
   } else {
     queue_cmd_->addCommand(new LoggerCommand(cmd_, ex_->what()));
+    is_first = true;
   }
 }
-
-// ICommand* ExceptionHandlerLog::handle(ICommand* cmd, std::exception& ex)
-// {
-//   try {
-//     return handlers_.at(typeid(ex).name()).at(typeid(*cmd).name());
-//   } catch (std::out_of_range& ex) {
-//     handlers_[typeid(ex).name()][typeid(*cmd).name()] = {
-//         new LoggerCommand(cmd, ex.what())};
-//     return handlers_[typeid(ex).name()][typeid(*cmd).name()];
-//   }
-// }

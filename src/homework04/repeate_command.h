@@ -6,13 +6,13 @@
 class RepeateCommand : public ICommand {
  public:
   explicit RepeateCommand(ICommand *cmd, int count_repeate = 1)
-      : cmd_(cmd) {}
+      : cmd_(cmd), count_repeate_(count_repeate) {}
   virtual void execute() { 
     try{
       cmd_->execute();
     } catch(std::exception &ex) {
-      count_repeate_++;
-      if(count_repeate_ <= 2){
+      current_repeate++;
+      if(current_repeate <= count_repeate_){
         this->execute();
       } else {
         LoggerCommand logger(this, ex.what());
@@ -25,4 +25,5 @@ class RepeateCommand : public ICommand {
  private:
   ICommand *cmd_;
   int count_repeate_;
+  int current_repeate{1};
 };

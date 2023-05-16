@@ -40,7 +40,7 @@ class ExceptionHandlerRepeateAndLog : public ExceptionHandler {
   virtual void handle() override;
 
  private:
-  bool is_first{false};
+  static bool is_first;
 };
 
 class ExceptionHandle {

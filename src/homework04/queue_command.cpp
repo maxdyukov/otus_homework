@@ -9,13 +9,13 @@ void QueueCommand::execute() {
   while (not commands_.empty()) {
     auto comm = commands_.front();
     try {
+      commands_.pop();
       comm->execute();
+      delete comm;
     } catch (std::exception &ex) {
       auto handler = ExceptionHandle::hanler(this, comm, &ex);
       handler->handle();
     }
-    commands_.pop();
-    delete comm;
   }
 }
 
