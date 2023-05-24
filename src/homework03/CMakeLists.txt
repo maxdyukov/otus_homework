@@ -1,4 +1,4 @@
-set(TARGET homework2)
+set(TARGET homework3)
 
 add_library(${TARGET} 
                     move.h 
