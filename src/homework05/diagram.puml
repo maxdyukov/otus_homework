@@ -1,0 +1,53 @@
+@startuml sadf
+
+class SortingMethod{
+    + {abstract} void sort() 
+}
+
+class SelectionSort{
+    + void sort() 
+}
+
+class MergeSort{
+    - void merge();
+    - void mergeSort();
+    + void sort() 
+}
+
+class InsertingSort{
+    + void sort() 
+}
+
+SortingMethod <|-- SelectionSort
+SortingMethod <|-- MergeSort
+SortingMethod <|-- InsertingSort
+
+class SortingMethodFactory{
+    + {abstract} SortingMethod* createSortingMethod(); 
+}
+class SelectionSortFactory{
+    + SortingMethod* createSortingMethod(); 
+}
+class InsertionSortFactory{
+    + SortingMethod* createSortingMethod(); 
+}
+class MergeSortFactory{
+    + SortingMethod* createSortingMethod(); 
+}
+
+SortingMethodFactory <|-- SelectionSortFactory
+SortingMethodFactory <|-- InsertionSortFactory
+SortingMethodFactory <|-- MergeSortFactory
+
+SelectionSortFactory *-- SelectionSort
+InsertionSortFactory *-- InsertingSort
+MergeSortFactory *-- MergeSort
+
+class FactorySort{
+    + {static} void performSorting(SortingMethodFactory* factory,
+                             std::vector<int>& data);
+}
+
+FactorySort o-- SortingMethodFactory
+
+@enduml
