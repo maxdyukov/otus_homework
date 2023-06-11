@@ -25,10 +25,9 @@ void GenerateMatrix::write_to_file(std::vector<std::vector<int>>& matrix) {
   out_file.close();
 }
 
-void GenerateMatrix::generate() {
+void GenerateMatrix::generate(std::vector<std::vector<int>>& matrix) {
   ::srand(time(0));
 
-  std::vector<std::vector<int>> matrix;
   matrix.resize(rowsize_);
   for (auto& v : matrix) {
     v.resize(colsize_);
@@ -39,6 +38,4 @@ void GenerateMatrix::generate() {
       c = ::rand();
     }
   }
-
-  write_to_file(matrix);
 }

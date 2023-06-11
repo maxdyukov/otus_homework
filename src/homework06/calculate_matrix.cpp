@@ -44,7 +44,7 @@ void CalculateMatrix::write_result_to_file(const std::vector<std::vector<int>>& 
   out_file.close();
 }
 
-void CalculateMatrix::sum() {
+std::vector<std::vector<int>> CalculateMatrix::sum() {
   read_two_matrixs_from_file();
 
   if (matrix1_.size() not_eq matrix2_.size() or
@@ -58,6 +58,5 @@ void CalculateMatrix::sum() {
       sum_vec[i][j] = matrix1_[i][j] + matrix2_[i][j];
     }
   }
-
-  write_result_to_file(sum_vec);
+  return sum_vec;
 }

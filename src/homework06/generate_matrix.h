@@ -6,9 +6,9 @@
 class GenerateMatrix {
     public:
      GenerateMatrix(uint32_t row_size, uint32_t col_size, std::string output_file);
-     void generate();
-    private:
+     void generate(std::vector<std::vector<int>>&);
      void write_to_file(std::vector<std::vector<int>>&);
+    private:
      private:
       uint32_t rowsize_;
       uint32_t colsize_;
