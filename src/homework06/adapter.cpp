@@ -6,7 +6,7 @@
         row_size_(row_size),
         col_size_(col_size) {}
 
-  std::vector<std::vector<int>> GenerateMatrixAdapter::sum() {
+  TMatrix GenerateMatrixAdapter::sum( TMatrix& matrix1,  TMatrix matrix2) {
     GenerateMatrix generator(row_size_, col_size_, "");
     std::vector<std::vector<int>> matrix;
     generator.generate(matrix);
