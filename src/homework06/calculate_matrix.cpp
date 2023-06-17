@@ -1,66 +1,77 @@
 #include "calculate_matrix.h"
 
+#include <fstream>
 #include <iostream>
+#include <sstream>
 
-CalculateMatrix::CalculateMatrix(std::string input_file,
-                                 std::string output_file)
-    : input_file_(input_file),
-      output_file_(output_file){}
+TMatrix CalculateMatrix::readMatrixFromFile(const std::string& filePath) {
+  std::ifstream file(filePath);
+  std::vector<std::vector<int>> matrix;
 
-std::string CalculateMatrix::get_input_file() const { return input_file_; }
-std::string CalculateMatrix::get_output_file() const { return output_file_; }
-
-void CalculateMatrix::read_matrixs_from_file(const std::string& file_name) {
-  uint rowsize{0}, colsize{0};
-  std::string v_file_name{file_name};
-  if (v_file_name.empty()){
-    v_file_name = get_input_file();
-  }
-  std::ifstream v_file(v_file_name);
-  if (not v_file.is_open()){
-    throw std::runtime_error("Error open input file");
-  }
-  v_file >> rowsize >> colsize;
-  matrix1_.resize(rowsize, std::vector<int>(colsize, 0));
-  for (uint i = 0; i < rowsize; i++) {
-    for (uint j = 0; j < colsize; j++) {
-      v_file >> matrix1_[i][j];
+  if (file.is_open()) {
+    std::string line;
+    while (std::getline(file, line)) {
+      std::vector<int> row;
+      std::istringstream iss(line);
+      int num;
+      while (iss >> num) {
+        row.push_back(num);
+      }
+      matrix.push_back(row);
     }
+    file.close();
+  } else {
+    std::cout << "Failed to open file: " << filePath << std::endl;
   }
-  v_file >> rowsize >> colsize;
-  matrix2_.resize(rowsize, std::vector<int>(colsize, 0));
-  for (uint i = 0; i < rowsize; i++) {
-    for (uint j = 0; j < colsize; j++) {
-      v_file >> matrix2_[i][j];
+
+  return matrix;
+}
+
+void CalculateMatrix::writeMatrixToFile(const TMatrix& matrix,
+                                        const std::string& filePath) {
+  std::ofstream file(filePath);
+
+  if (file.is_open()) {
+    for (const auto& row : matrix) {
+      for (const auto& num : row) {
+        file << num << " ";
+      }
+      file << std::endl;
     }
+    file.close();
+  } else {
+    std::cout << "Failed to open file: " << filePath << std::endl;
   }
 }
 
-void CalculateMatrix::write_result_to_file(const TMatrix& sum_vec) {
-  std::ofstream out_file(output_file_);
-  if (not out_file.is_open()) {
-    throw std::runtime_error("Error open output file");
+TMatrix CalculateMatrix::sum(const TMatrix& matrixA, const TMatrix& matrixB) {
+  TMatrix result;
+
+  if (matrixA.size() != matrixB.size() ||
+      matrixA[0].size() != matrixB[0].size()) {
+    std::cout << "Matrix dimensions do not match." << std::endl;
+    return result;
   }
-  for (uint i = 0; i < sum_vec.size(); i++) {
-    for (uint j = 0; j < sum_vec[i].size(); j++) {
-      out_file << sum_vec[i][j] << " ";
+
+  for (size_t i = 0; i < matrixA.size(); ++i) {
+    std::vector<int> row;
+    for (size_t j = 0; j < matrixA[0].size(); ++j) {
+      row.push_back(matrixA[i][j] + matrixB[i][j]);
     }
-    out_file << "\n";
+    result.push_back(row);
   }
-  out_file.close();
+
+  return result;
 }
 
-TMatrix CalculateMatrix::sum(const TMatrix& matrix1, const TMatrix matrix2) {
-  if (matrix1.size() not_eq matrix2.size() or
-      matrix1.front().size() != matrix2.front().size()) {
-    throw std::invalid_argument("Size not matix");
-  }
+void CalculateMatrix::loadMatrices(const std::string& fileA,
+                                   const std::string& fileB) {
+  matrixA_ = readMatrixFromFile(fileA);
+  matrixB_ = readMatrixFromFile(fileB);
+}
 
-  std::vector<std::vector<int>> sum_vec;
-  for (uint i = 0; i < matrix1.size(); i++) {
-    for (uint j = 0; j < matrix1.front().size(); j++) {
-      sum_vec[i][j] = matrix1_[i][j] + matrix2_[i][j];
-    }
-  }
-  return sum_vec;
+// Функция для сложения матриц и сохранения результата в файл
+void CalculateMatrix::calculateAndSave(const std::string& outputFile) {
+  std::vector<std::vector<int>> resultMatrix = sum(matrixA_, matrixB_);
+  writeMatrixToFile(resultMatrix, outputFile);
 }

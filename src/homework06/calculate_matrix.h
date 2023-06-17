@@ -1,24 +1,20 @@
 #pragma once
 
 #include <vector>
-#include <fstream>
 
 using TMatrix = std::vector<std::vector<int>>;
 
 class CalculateMatrix {
     public:
-     CalculateMatrix(std::string input_file, std::string output_file);
-     TMatrix sum(TMatrix& matrix1, TMatrix matrix2);
-     void read_matrixs_from_file(const std::string& file_name = "");
-     void write_result_to_file(const TMatrix& sum_vec);
-     std::string get_input_file() const;
-     std::string get_output_file() const;
+     CalculateMatrix() = default;
+     TMatrix sum(const TMatrix& matrix1,const TMatrix& matrix2);
+     TMatrix readMatrixFromFile(const std::string& filePath);
+     void writeMatrixToFile(const TMatrix& matrix, const std::string& filePath);
+     void loadMatrices(const std::string& fileA, const std::string& fileB);
+     void calculateAndSave(const std::string& outputFile);
+
 
     private:
-     void read_matrix_from_file(std::ifstream &infile, std::vector<std::vector<int>>& matrix);
-    protected:
-     std::vector<std::vector<int>> matrix1_;
-     std::vector<std::vector<int>> matrix2_;
-     const std::string input_file_;
-     const std::string output_file_;
+     TMatrix matrixA_;
+     TMatrix matrixB_;
 };
