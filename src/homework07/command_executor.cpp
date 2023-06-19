@@ -2,14 +2,14 @@
 
 #include "exception_handler.h"
 
-CommandExecutor::CommandExecutor(std::queue<ICommand*>& queue)
-    : queue_cmd_(queue) {}
+CommandExecutor::CommandExecutor() {}
 
 void CommandExecutor::executeCommand() {
-  while (isRunning) {
+  while (isRunning_) {
     std::unique_lock<std::mutex> lck(mtx_);
 
     if(isSoftStop && queue_cmd_.empty()){
+      isRunning_ = false;
       return;
     }
 
@@ -34,6 +34,10 @@ void CommandExecutor::addCommand(ICommand* cmd) {
   queue_cmd_.push(cmd);
 }
 
+bool CommandExecutor::isRunning() { return isRunning_; }
+
 void CommandExecutor::setSoftStop() { isSoftStop = true; }
 
-void CommandExecutor::setHardStop() { isRunning = false; }
+void CommandExecutor::setHardStop() { isRunning_ = false; }
+
+uint32_t CommandExecutor::countCommandInQueue() const { return queue_cmd_.size(); }

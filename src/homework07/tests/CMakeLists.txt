@@ -3,6 +3,9 @@ set(TARGET_NAME homework07_test)
 add_executable(${TARGET_NAME} 
                         main.cpp
                         command_executor_test.cpp
+                        ../command_thread_run.cpp
+                        ../command_executor.cpp
+                        ../exception_handler.cpp
                          )
 
 target_include_directories(${TARGET_NAME} PRIVATE ${GTEST_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/homework07)

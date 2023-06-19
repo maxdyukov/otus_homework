@@ -7,17 +7,19 @@
 
 class CommandExecutor {
  public:
-  CommandExecutor(std::queue<ICommand*>& queue);
+  explicit CommandExecutor();
   void executeCommand();
   void addCommand(ICommand* cmd);
 public:
   void setSoftStop();
   void setHardStop();
+  uint32_t countCommandInQueue() const;
+  bool isRunning();
 
  private:
   std::mutex mtx_;
   std::condition_variable conditionVariable;
   std::queue<ICommand*> queue_cmd_;
-  bool isRunning{true};
+  bool isRunning_{true};
   bool isSoftStop{false};
 };
