@@ -1,0 +1,32 @@
+@startuml
+
+class GenerateMatrix {
+    - row_size_: uint32_t
+    - col_size_: uint32_t
+    - output_file_: std::string
+    --
+    + GenerateMatrix(row_size: uint32_t, col_size: uint32_t, output_file: std::string)
+    + generate(matrix: std::vector<std::vector<int>>&): void
+    + write_to_file(matrix: std::vector<std::vector<int>>&): void
+}
+
+class CalculateMatrix {
+    - matrixA_: std::vector<std::vector<int>>
+    - matrixB_: std::vector<std::vector<int>>
+    --
+    + readMatrixFromFile(filePath: std::string): std::vector<std::vector<int>>
+    + writeMatrixToFile(matrix: std::vector<std::vector<int>>, filePath: std::string): void
+    + sum(matrixA: std::vector<std::vector<int>>, matrixB: std::vector<std::vector<int>>): std::vector<std::vector<int>>
+}
+
+class MatrixCalculatorAdapter {
+    - CalculateMatrix calc_matrix_;
+    --
+    + generate(): void
+    + write_to_file(): voud
+}
+
+MatrixCalculatorAdapter --> GenerateMatrix
+MatrixCalculatorAdapter --o CalculateMatrix
+
+@enduml
