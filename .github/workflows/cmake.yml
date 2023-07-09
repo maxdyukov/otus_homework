@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Install package
-      run: sudo apt update && sudo apt install -y libboost-all-dev
+      run: wget https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.gz && tar -xvf boost_1_82_0.tar.gz && cd boost_1_82_0 && ./bootstrap.sh --prefix=/usr/ && ./bootstrap.sh --prefix=/usr/
 
     - uses: actions/checkout@v3
 

@@ -1,8 +1,5 @@
 set(TARGET_NAME homework08)
 
-# if(APPLE)
-#   set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/amqp-cpp/4.3.26/cmake")
-# else()
 FetchContent_Declare(
   amqp-cpp
   GIT_REPOSITORY https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git
@@ -13,7 +10,6 @@ FetchContent_GetProperties(amqp-cpp)
 if (NOT amqp-cpp_POPULATED)
     add_subdirectory(${amqp-cpp_SOURCE_DIR} ${amqp-cpp_BINARY_DIR})
 endif()
-# endif(APPLE)
 
 find_package(Boost REQUIRED COMPONENTS system json thread)
 
