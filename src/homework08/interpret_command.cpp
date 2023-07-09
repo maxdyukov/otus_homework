@@ -1,4 +1,5 @@
 #include "interpret_command.h"
+
 #include "move_command.h"
 #include "rotate_command.h"
 
@@ -27,8 +28,8 @@ void InterpretCommand::execute() {
           cmd = new RotateCommand((*object), speed, angular);
           break;
         }
-          cmd_exec_->addCommand(cmd);
       }
+      cmd_exec_->addCommand(cmd);
     }
   }
 }
