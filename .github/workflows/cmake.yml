@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Install package
-      run: sudo apt update && sudo apt install -y amqp-cpp boost
+      run: sudo apt update && sudo apt install -y libboost-all-dev
 
     - uses: actions/checkout@v3
 
