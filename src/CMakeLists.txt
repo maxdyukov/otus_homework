@@ -1,7 +1,7 @@
-project(OTUS_HOMEWORK)
 cmake_minimum_required(VERSION 3.14)
+project(OTUS_HOMEWORK)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -23,3 +23,4 @@ add_subdirectory(homework04)
 add_subdirectory(homework05)
 add_subdirectory(homework06)
 add_subdirectory(homework07)
+add_subdirectory(homework08)
