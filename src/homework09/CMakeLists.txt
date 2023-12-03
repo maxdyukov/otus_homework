@@ -1,14 +1,14 @@
-set(TARGET_NAME homework08)
+set(TARGET_NAME homework09)
 
 find_package(Boost REQUIRED COMPONENTS system json thread)
 
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_library(${TARGET_NAME} command_executor.cpp interpret_command.cpp)
+add_executable(${TARGET_NAME} main.cpp)
 target_link_libraries(${TARGET_NAME} PUBLIC 
                                             amqpcpp 
                                             Boost::system
                                             Boost::json
                                             Boost::thread)
 
-add_subdirectory(tests)
+# add_subdirectory(tests)
