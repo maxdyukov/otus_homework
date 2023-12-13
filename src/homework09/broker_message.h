@@ -15,7 +15,8 @@
 
 class MessageBroker {
  public:
-  explicit MessageBroker(AMQP::Address *adress) : service(std::make_unique<boost::asio::io_service>(4)) {
+  explicit MessageBroker(AMQP::Address *adress)
+      : service(std::make_unique<boost::asio::io_service>(4)) {
     AMQP::LibBoostAsioHandler handler(*service);
     AMQP::TcpConnection connection(&handler, *adress);
     channel_create_game = std::make_unique<AMQP::TcpChannel>(&connection);
@@ -49,8 +50,6 @@ class MessageBroker {
           DataForCreateToken data;
           data.user = jv.at("user").as_string();
           data.id_game = jv.at("id_game").as_uint64();
-
-          
         });
   }
   void run() { service->run(); }
