@@ -13,12 +13,9 @@
 
 #include "type_def.h"
 
-using UsersGame = std::map<std::string, uint64_t>;
-
 class MessageBroker {
  public:
-  MessageBroker(AMQP::Address *adress) {
-    service = std::make_unique<boost::asio::io_service>(4);
+  explicit MessageBroker(AMQP::Address *adress) : service(std::make_unique<boost::asio::io_service>(4)) {
     AMQP::LibBoostAsioHandler handler(*service);
     AMQP::TcpConnection connection(&handler, *adress);
     channel_create_game = std::make_unique<AMQP::TcpChannel>(&connection);

@@ -1,0 +1,10 @@
+{
+    "build": { "dockerfile": "Dockerfile" },
+    "customizations": {
+        "vscode": {
+          "extensions": ["twxs.cmake", "ms-vscode.cmake-tools", 
+            "josetr.cmake-language-support-vscode", "ms-vscode.cpptools",
+            "ms-vscode.cpptools-themes", "mhutchie.git-graph"]
+        }
+    }
+}

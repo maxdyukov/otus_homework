@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <map>
+
+using UsersGame = std::map<std::string, uint64_t>;
 
 struct DataForCreateToken
 {
