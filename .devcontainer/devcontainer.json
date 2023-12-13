@@ -2,9 +2,25 @@
     "build": { "dockerfile": "Dockerfile" },
     "customizations": {
         "vscode": {
-          "extensions": ["twxs.cmake", "ms-vscode.cmake-tools", 
-            "josetr.cmake-language-support-vscode", "ms-vscode.cpptools",
-            "ms-vscode.cpptools-themes", "mhutchie.git-graph"]
+          "extensions": [
+            "ClemensPeters.format-json",
+            "eamodio.gitlens",
+            "grimmer.vscode-back-forward-button",
+            "jbenden.c-cpp-flylint",
+            "jeff-hykin.xd-theme",
+            "josetr.cmake-language-support-vscode",
+            "mhutchie.git-graph",
+            "ms-vscode.cmake-tools",
+            "ms-vscode.cpptools",
+            "ms-vscode.cpptools-themes",
+            "nextfaze.json-parse-stringify",
+            "twxs.cmake",
+            "usernamehw.errorlens",
+            "vscode-icons-team.vscode-icons",
+            "wayou.vscode-todo-highlight",
+            "xaver.clang-format",
+            "ZainChen.json"
+          ]
         }
     }
 }
