@@ -4,9 +4,8 @@
 #include <boost/json/value.hpp>
 #include <iostream>
 
-CreateGameRequest::CreateGameRequest(UsersGame *a_users_game) {
-  users_game = a_users_game;
-}
+CreateGameRequest::CreateGameRequest(UsersGame *a_users_game)
+    : Request(a_users_game) {}
 
 void CreateGameRequest::process(const std::string &json_request) {
   try {

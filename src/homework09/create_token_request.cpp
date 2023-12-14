@@ -6,7 +6,7 @@
 #include <boost/json/value.hpp>
 
 CreateTokenRequest::CreateTokenRequest(UsersGame* a_users_game)
-    : users_game(a_users_game) {}
+    : Request(a_users_game) {}
 
 void CreateTokenRequest::process(const std::string& json_request) {
   try {
