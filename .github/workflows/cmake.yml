@@ -20,8 +20,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install package
+    - name: Install boost
       run: wget https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.gz && tar -xvf boost_1_82_0.tar.gz && cd boost_1_82_0 && ./bootstrap.sh --prefix=/usr/ --with-libraries=system,json,thread && sudo ./b2 install
+
+    - name: Install jwt-cpp
+      run: git clone https://github.com/Thalhammer/jwt-cpp.git --branch v0.7.0 && cd jwt-cpp && mkdir build && cd build && cmake .. && make && sudo make install
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.

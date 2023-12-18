@@ -1,12 +1,12 @@
-set(TARGET_NAME homework08)
+set(TARGET_NAME homework09)
 
 find_package(Boost REQUIRED COMPONENTS system json thread)
+find_package(OpenSSL REQUIRED)
 
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_library(${TARGET_NAME} command_executor.cpp interpret_command.cpp)
-target_link_libraries(${TARGET_NAME} PUBLIC 
-                                            amqpcpp 
+add_library(${TARGET_NAME} create_game_request.cpp create_token_request.cpp check_user_request.cpp)
+target_link_libraries(${TARGET_NAME} PUBLIC OpenSSL::SSL OpenSSL::Crypto
                                             Boost::system
                                             Boost::json
                                             Boost::thread)
