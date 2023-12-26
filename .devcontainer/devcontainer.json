@@ -19,7 +19,8 @@
             "vscode-icons-team.vscode-icons",
             "wayou.vscode-todo-highlight",
             "xaver.clang-format",
-            "ZainChen.json"
+            "ZainChen.json",
+            "jebbs.plantuml"
           ]
         }
     }
