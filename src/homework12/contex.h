@@ -11,8 +11,9 @@ class Contex {
   Contex() {}
   ~Contex() {}
   std::any get(const std::string& property) { return contex_[property]; }
-  void set(const std::string& property, std::any value) {
+  Contex& set(const std::string& property, std::any value) {
     contex_[property] = value;
+      return *this;
   }
 
  private:

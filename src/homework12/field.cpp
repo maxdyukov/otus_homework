@@ -13,10 +13,12 @@ void Field::remove_object(Object* object) {
   });
 }
 
-bool Field::Handle(Object* obj1, Object *obj2) {
-  if (check_object(obj1) && check_object(obj2)) {
-    // здесь должна быть функция коллизии
-    return true;
+void Field::Handle() {
+  Object* obj1 = std::any_cast<Object*>(contex_->get("findObject"));
+
+  if (check_object(obj1)) {
+    contex_->set("isFindObject", true);
+  } else{
+    contex_->set("isFindObject", false);
   }
-  return false;
 }

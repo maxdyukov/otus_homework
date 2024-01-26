@@ -22,7 +22,7 @@ class Field : public AbstractHandler {
 
   bool check_object(Object* object);
 
-  virtual bool Handle(Object* obj1, Object *obj2) override;
+  virtual void Handle() override;
 
  protected:
   Index index_;

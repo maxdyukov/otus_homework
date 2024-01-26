@@ -9,7 +9,7 @@ class Handler {
  public:
   virtual ~Handler() {}
   virtual Handler* SetNext(Handler* handler) = 0;
-  virtual bool Handle(Object* obj1, Object *obj2) = 0;
+  virtual void Handle() = 0;
 };
 
 // Базовый класс обработчика
@@ -26,10 +26,9 @@ class AbstractHandler : public Handler {
     return handler;
   }
 
-  bool Handle(Object* obj1, Object *obj2) override {
+  virtual void Handle() override {
     if (next_handler_) {
-      return next_handler_->Handle(obj1, obj2);
+        next_handler_->Handle();
     }
-    return false;
   }
 };
